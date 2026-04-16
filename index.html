@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You're Registered! | Internet Moguls Free Masterclass</title>
+  <link rel="icon" type="image/x-icon" href="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/yjFGdcCNhaaVgXod.ico" />
+  <link rel="apple-touch-icon" href="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/iadPwgnsRijfEduI.png" />
+  <meta property="og:image" content="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/iadPwgnsRijfEduI.png" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta property="og:title" content="You're In! Here's What Happens Next — Internet Moguls" />
+  <meta property="og:description" content="You're registered for the Free Evergreen Webinar Masterclass. Check your email for your access link." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Custom Countdown CSS -->
+  <style>
+    /* ─── CUSTOM COUNTDOWN BLOCK ─── */
+    .countdown-box {
+      background: var(--navy2);
+      border: 1px solid rgba(0,200,83,0.3);
+      border-radius: 16px;
+      padding: 36px 32px;
+      max-width: 560px;
+      margin: 0 auto 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,200,83,0.1);
+      text-align: center;
+    }
+    .cd-label {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+    .cd-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .cd-session-time {
+      font-size: 13px;
+      color: var(--gray);
+      margin-bottom: 24px;
+    }
+    .cd-timer {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .cd-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .cd-num {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 42px;
+      line-height: 1;
+      color: var(--green);
+      background: rgba(0,200,83,0.08);
+      border: 1px solid rgba(0,200,83,0.2);
+      border-radius: 10px;
+      padding: 10px 14px;
+      min-width: 68px;
+      text-align: center;
+    }
+    .cd-sep {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 36px;
+      color: var(--green);
+      line-height: 1;
+      padding-top: 10px;
+      opacity: 0.5;
+    }
+    .cd-unit-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 6px;
+    }
+    .cd-expired {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--green);
+      padding: 16px;
+      background: rgba(0,200,83,0.1);
+      border-radius: 10px;
+      margin-bottom: 24px;
+    }
+    .cal-btn-wrap { margin-bottom: 12px; }
+    .cal-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green);
+      color: var(--navy);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(0,200,83,0.35);
+    }
+    .cal-btn:hover {
+      background: var(--green2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,200,83,0.5);
+    }
+    .cal-dropdown {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+      align-items: center;
+    }
+    .cal-dropdown.open { display: flex; }
+    .cal-option {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.06);
+      color: var(--light);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: background 0.15s;
+      min-width: 210px;
+      justify-content: center;
+    }
+    .cal-option:hover { background: rgba(255,255,255,0.12); }
+    .cd-note { font-size: 12px; color: var(--gray); margin-top: 10px; }
+    @media (max-width: 480px) {
+      .countdown-box { padding: 28px 16px; }
+      .cd-num { font-size: 32px; padding: 8px 10px; min-width: 54px; }
+      .cd-sep { font-size: 28px; }
+      .cd-timer { gap: 6px; }
+    }
+  </style>
+
+  <!-- Hyros Tracking -->
+  <script>
+  var head = document.head;
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = "https://175481.t.hyros.com/v1/lst/universal-script?ph=f8826bee9debb7572489d987a8a840bfabd3398673d6b657b8c72ad99c074c01&tag=!clicked&ref_url=" + encodeURI(document.URL);
+  head.appendChild(script);
+  </script>
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '3239229549609086');
+  fbq('track', 'PageView');
+  fbq('track', 'CompleteRegistration');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=3239229549609086&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <!-- Ontraport Tracking -->
+  <script src='https://optassets.ontraport.com/tracking.js' type='text/javascript' async='true' onload='_mri="22840",_mr_domain="rei.ontraport.com",mrtracking();'></script>
+
+  <!-- Vistrack Analytics -->
+  <script async src="https://visitrack-pxnq2oik.manus.space/api/tracker/rJvI8gE5cnmpdw3K/tracker.js"></script>
+
+  <style>
+    :root {
+      --navy:   #0a0e1a;
+      --navy2:  #0f1525;
+      --navy3:  #141c30;
+      --green:  #00c853;
+      --green2: #00e676;
+      --gold:   #ffc107;
+      --white:  #ffffff;
+      --gray:   #a0aec0;
+      --light:  #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ─── TOP CONFIRMATION BAR ─── */
+    .confirm-bar {
+      background: var(--green);
+      text-align: center;
+      padding: 12px 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      color: var(--navy);
+      text-transform: uppercase;
+    }
+
+    /* ─── NAVBAR ─── */
+    .navbar {
+      background: var(--navy);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 26px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .logo-text span { color: var(--green); }
+
+    /* ─── HERO CONFIRMATION ─── */
+    .hero {
+      background: linear-gradient(135deg, #0a0e1a 0%, #0f1a2e 50%, #0a0e1a 100%);
+      padding: 60px 20px 70px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -150px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,200,83,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 800px; margin: 0 auto; position: relative; }
+
+    .checkmark-badge {
+      width: 80px; height: 80px;
+      background: rgba(0,200,83,0.15);
+      border: 2px solid var(--green);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 36px;
+    }
+
+    .confirm-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--green); }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--light);
+      margin-bottom: 32px;
+      line-height: 1.7;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* wf-box styles removed — replaced by .countdown-box */
+
+    /* ─── NEXT STEPS SECTION ─── */
+    .next-steps {
+      background: var(--navy2);
+      padding: 70px 20px;
+    }
+    .next-steps-inner { max-width: 900px; margin: 0 auto; }
+
+    .section-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(24px, 3vw, 36px);
+      line-height: 1.2;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .divider {
+      width: 60px; height: 4px;
+      background: var(--green);
+      border-radius: 2px;
+      margin: 16px auto 48px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .step-card {
+      background: var(--navy3);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 28px 24px;
+      text-align: center;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .step-card:hover {
+      border-color: rgba(0,200,83,0.3);
+      transform: translateY(-4px);
+    }
+    .step-number {
+      width: 48px; height: 48px;
+      background: rgba(0,200,83,0.15);
+      border: 2px solid var(--green);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      color: var(--green);
+      margin: 0 auto 16px;
+    }
+    .step-card h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .step-card p { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+    /* ─── WHAT TO EXPECT SECTION ─── */
+    .expect-section {
+      background: var(--navy);
+      padding: 70px 20px;
+    }
+    .expect-inner { max-width: 900px; margin: 0 auto; }
+
+    .expect-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 0;
+    }
+    .expect-card {
+      background: var(--navy2);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 28px 24px;
+    }
+    .expect-icon {
+      font-size: 32px;
+      margin-bottom: 14px;
+    }
+    .expect-card h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .expect-card p { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+    /* ─── HOST BIO STRIP ─── */
+    .host-strip {
+      background: var(--navy3);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 50px 20px;
+    }
+    .host-strip-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+    .host-img {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--green);
+      flex-shrink: 0;
+    }
+    .host-info h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .host-info .host-title {
+      font-size: 13px;
+      color: var(--green);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .host-info p { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+    /* ─── SOCIAL PROOF STRIP ─── */
+    .proof-strip {
+      background: var(--navy2);
+      padding: 50px 20px;
+      text-align: center;
+    }
+    .proof-strip-inner { max-width: 900px; margin: 0 auto; }
+    .proof-stats {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+    .proof-stat .val {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 36px;
+      color: var(--green);
+    }
+    .proof-stat .lbl {
+      font-size: 13px;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials {
+      background: var(--navy);
+      padding: 70px 20px;
+    }
+    .testimonials-inner { max-width: 900px; margin: 0 auto; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .testimonial-img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,0.08);
+      filter: brightness(0.9) contrast(1.05);
+      transition: transform 0.2s;
+    }
+    .testimonial-img:hover { transform: scale(1.02); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 30px 20px;
+      text-align: center;
+    }
+    footer p { font-size: 13px; color: var(--gray); }
+    footer a { color: var(--gray); text-decoration: underline; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .hero { padding: 50px 16px 60px; }
+      .countdown-box { padding: 28px 20px; }
+      .host-strip-inner { flex-direction: column; text-align: center; }
+      .proof-stats { gap: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="confirm-bar">
+    ✅ &nbsp; Registration Confirmed — Check Your Email For Your Access Link
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/yHHutYKLESCvbPao.png" alt="Internet Moguls" style="height:50px;width:auto;display:block;">
+  </nav>
+
+  <!-- HERO CONFIRMATION -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="checkmark-badge">✅</div>
+      <div class="confirm-label">You're Officially Registered</div>
+      <h1>You're In! <span>Check Your Email</span> For Your Access Link</h1>
+      <p class="hero-sub">
+        You've secured your spot for the <strong>Free Evergreen Webinar Masterclass</strong> — <em>How To Scale Your Yearly Income Into Your Monthly Income With Evergreen Webinars</em>. Your confirmation and access link have been sent to your inbox.
+      </p>
+
+      <!-- Custom Countdown + Calendar Block -->
+      <div class="countdown-box" id="countdown-box">
+        <div class="cd-label">Your Webinar Starts In</div>
+        <div class="cd-title" id="cd-session-label">Loading your session time...</div>
+        <div class="cd-session-time" id="cd-session-date"></div>
+
+        <!-- Countdown Timer -->
+        <div class="cd-timer" id="cd-timer">
+          <div class="cd-unit">
+            <div class="cd-num" id="cd-hours">00</div>
+            <div class="cd-unit-label">Hours</div>
+          </div>
+          <div class="cd-sep">:</div>
+          <div class="cd-unit">
+            <div class="cd-num" id="cd-minutes">00</div>
+            <div class="cd-unit-label">Minutes</div>
+          </div>
+          <div class="cd-sep">:</div>
+          <div class="cd-unit">
+            <div class="cd-num" id="cd-seconds">00</div>
+            <div class="cd-unit-label">Seconds</div>
+          </div>
+        </div>
+
+        <!-- Expired state (hidden by default) -->
+        <div class="cd-expired" id="cd-expired" style="display:none;">
+          🎉 Your webinar is starting now — click your access link!
+        </div>
+
+        <!-- Add to Calendar -->
+        <div class="cal-btn-wrap">
+          <button class="cal-btn" onclick="toggleCalDropdown()">
+            📅 &nbsp;Add to Calendar
+          </button>
+        </div>
+        <div class="cal-dropdown" id="cal-dropdown">
+          <a class="cal-option" id="cal-google" href="#" target="_blank" rel="noopener">📅 &nbsp;Google Calendar</a>
+          <a class="cal-option" id="cal-ical" href="#" download="webinar-reminder.ics">🍎 &nbsp;Apple Calendar (.ics)</a>
+          <a class="cal-option" id="cal-outlook" href="#" download="webinar-reminder.ics">📧 &nbsp;Outlook / Other (.ics)</a>
+        </div>
+        <p class="cd-note">📱 You'll also receive a text reminder before the webinar starts.</p>
+      </div>
+
+      <script>
+      (function() {
+        // ── CONFIG ──────────────────────────────────────────────
+        var WEBINAR_HOUR_EST = 15;   // 3:00 PM
+        var WEBINAR_MINUTE   = 0;
+        var WEBINAR_TITLE    = 'Free Masterclass: Internet Moguls';
+        var WEBINAR_DESC     = 'Join Chris Bruce for the Free Evergreen Webinar Masterclass. Access link in your confirmation email.';
+        var WEBINAR_LOCATION = 'Online — check your email for the access link';
+        // ────────────────────────────────────────────────────────
+
+        function getNextWebinarEST() {
+          // Get current time in EST (UTC-5) / EDT (UTC-4)
+          var now = new Date();
+          // Determine EST offset: EST = UTC-5, EDT = UTC-4
+          // We'll use Intl to get current EST time
+          var estNow = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+          var target = new Date(estNow);
+          target.setHours(WEBINAR_HOUR_EST, WEBINAR_MINUTE, 0, 0);
+
+          // If today's 3 PM has already passed, roll to tomorrow
+          if (estNow >= target) {
+            target.setDate(target.getDate() + 1);
+          }
+
+          // Convert target back to UTC for countdown math
+          // Get the UTC offset for America/New_York at target date
+          var targetStr = target.toLocaleString('en-US', { timeZone: 'America/New_York' });
+          var targetLocal = new Date(targetStr);
+          var diff = target - targetLocal;
+          var targetUTC = new Date(target.getTime() - diff);
+
+          return { target: targetUTC, display: target };
+        }
+
+        var webinarInfo = getNextWebinarEST();
+        var targetUTC   = webinarInfo.target;
+        var displayTime = webinarInfo.display;
+
+        // Format display date/time
+        var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+        var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        var d = displayTime;
+        var isToday = (function() {
+          var estNow = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }));
+          return estNow.getDate() === d.getDate() && estNow.getMonth() === d.getMonth();
+        })();
+
+        var dayLabel = isToday ? 'Today' : days[d.getDay()];
+        var timeStr  = (WEBINAR_HOUR_EST > 12 ? WEBINAR_HOUR_EST - 12 : WEBINAR_HOUR_EST) +
+                       ':' + (WEBINAR_MINUTE < 10 ? '0' : '') + WEBINAR_MINUTE +
+                       (WEBINAR_HOUR_EST >= 12 ? ' PM' : ' AM') + ' EST';
+
+        document.getElementById('cd-session-label').textContent =
+          dayLabel + ' at ' + timeStr;
+        document.getElementById('cd-session-date').textContent =
+          days[d.getDay()] + ', ' + months[d.getMonth()] + ' ' + d.getDate() + ' — ' + timeStr;
+
+        // ── COUNTDOWN TICK ──────────────────────────────────────
+        function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+        function tick() {
+          var now  = Date.now();
+          var diff = targetUTC.getTime() - now;
+
+          if (diff <= 0) {
+            document.getElementById('cd-timer').style.display   = 'none';
+            document.getElementById('cd-expired').style.display = 'block';
+            return;
+          }
+
+          var totalSec = Math.floor(diff / 1000);
+          var hrs  = Math.floor(totalSec / 3600);
+          var mins = Math.floor((totalSec % 3600) / 60);
+          var secs = totalSec % 60;
+
+          document.getElementById('cd-hours').textContent   = pad(hrs);
+          document.getElementById('cd-minutes').textContent = pad(mins);
+          document.getElementById('cd-seconds').textContent = pad(secs);
+        }
+
+        tick();
+        setInterval(tick, 1000);
+
+        // ── CALENDAR LINKS ──────────────────────────────────────
+        function buildGoogleCalLink(start) {
+          var end = new Date(start.getTime() + 60 * 60 * 1000); // +1 hour
+          function fmt(dt) {
+            return dt.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+          }
+          return 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+            '&text=' + encodeURIComponent(WEBINAR_TITLE) +
+            '&dates=' + fmt(start) + '/' + fmt(end) +
+            '&details=' + encodeURIComponent(WEBINAR_DESC) +
+            '&location=' + encodeURIComponent(WEBINAR_LOCATION);
+        }
+
+        function buildICS(start) {
+          var end = new Date(start.getTime() + 60 * 60 * 1000);
+          function fmt(dt) {
+            return dt.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+          }
+          var ics = [
+            'BEGIN:VCALENDAR',
+            'VERSION:2.0',
+            'PRODID:-//Internet Moguls//Webinar//EN',
+            'BEGIN:VEVENT',
+            'UID:webinar-' + start.getTime() + '@theinternetmogul.com',
+            'DTSTAMP:' + fmt(new Date()),
+            'DTSTART:' + fmt(start),
+            'DTEND:'   + fmt(end),
+            'SUMMARY:' + WEBINAR_TITLE,
+            'DESCRIPTION:' + WEBINAR_DESC,
+            'LOCATION:' + WEBINAR_LOCATION,
+            'BEGIN:VALARM',
+            'TRIGGER:-PT30M',
+            'ACTION:DISPLAY',
+            'DESCRIPTION:Reminder: Your webinar starts in 30 minutes!',
+            'END:VALARM',
+            'END:VEVENT',
+            'END:VCALENDAR'
+          ].join('\r\n');
+          return 'data:text/calendar;charset=utf8,' + encodeURIComponent(ics);
+        }
+
+        document.getElementById('cal-google').href  = buildGoogleCalLink(targetUTC);
+        var icsHref = buildICS(targetUTC);
+        document.getElementById('cal-ical').href    = icsHref;
+        document.getElementById('cal-outlook').href = icsHref;
+
+        // ── DROPDOWN TOGGLE ─────────────────────────────────────
+        window.toggleCalDropdown = function() {
+          var dd = document.getElementById('cal-dropdown');
+          dd.classList.toggle('open');
+        };
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!e.target.closest('#countdown-box')) {
+            document.getElementById('cal-dropdown').classList.remove('open');
+          }
+        });
+      })();
+      </script>
+
+      <p style="font-size: 13px; color: var(--gray); margin-top: 10px;">
+        🔒 &nbsp; Don't see the email? Check your spam folder and mark us as safe.
+      </p>
+    </div>
+  </section>
+
+  <!-- NEXT STEPS -->
+  <section class="next-steps">
+    <div class="next-steps-inner">
+      <div class="section-label">What To Do Right Now</div>
+      <h2 class="section-title">3 Steps To Get The Most Out Of This Masterclass</h2>
+      <div class="divider"></div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h4>Check Your Email</h4>
+          <p>Your confirmation email with the webinar access link is on its way. Check your inbox (and spam folder) and add us to your safe senders list so you don't miss any updates.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h4>Block Your Calendar</h4>
+          <p>Set a reminder for your session time so nothing gets in the way. This masterclass is packed with actionable strategies — you'll want to be fully present with zero distractions.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h4>Come Ready To Take Notes</h4>
+          <p>Have a notepad or Google Doc open. Chris will be walking through the exact One-To-Many System step by step. The more you capture, the more you can implement immediately after.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT TO EXPECT -->
+  <section class="expect-section">
+    <div class="expect-inner">
+      <div class="section-label">Inside The Masterclass</div>
+      <h2 class="section-title">Here's Exactly What You'll Discover</h2>
+      <div class="divider"></div>
+      <div class="expect-grid">
+        <div class="expect-card">
+          <div class="expect-icon">📈</div>
+          <h4>The One-To-Many Sales System</h4>
+          <p>The exact framework Chris used to generate over $7.4M — selling to hundreds of people at once instead of one-on-one calls.</p>
+        </div>
+        <div class="expect-card">
+          <div class="expect-icon">🎯</div>
+          <h4>No Big Audience Required</h4>
+          <p>How to generate consistent daily sales even if you have zero followers, no email list, and have never run a webinar before.</p>
+        </div>
+        <div class="expect-card">
+          <div class="expect-icon">💰</div>
+          <h4>Daily Cash Flow On Autopilot</h4>
+          <p>How to set up an evergreen webinar that runs 24/7 and deposits money into your account while you sleep, travel, or spend time with family.</p>
+        </div>
+        <div class="expect-card">
+          <div class="expect-icon">🤖</div>
+          <h4>Build AI Software In One Day To Sell</h4>
+          <p>The brand new 2026 strategy — how to build and sell custom AI software tools for your niche in a single day, even with zero coding experience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF STATS STRIP -->
+  <div class="proof-strip">
+    <div class="proof-strip-inner">
+      <div class="proof-stats">
+        <div class="proof-stat">
+          <div class="val">$7.4M+</div>
+          <div class="lbl">Generated With This System</div>
+        </div>
+        <div class="proof-stat">
+          <div class="val">10+</div>
+          <div class="lbl">Years Scaling Online Businesses</div>
+        </div>
+        <div class="proof-stat">
+          <div class="val">Two Comma Club</div>
+          <div class="lbl">ClickFunnels Award Winner</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOST BIO STRIP -->
+  <div class="host-strip">
+    <div class="host-strip-inner">
+      <img
+        src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/YDtlwXTWfrbNJeiH.jpg"
+        alt="Chris Bruce"
+        class="host-img"
+      />
+      <div class="host-info">
+        <h3>Chris Bruce</h3>
+        <div class="host-title">Your Host & Instructor</div>
+        <p>
+          Chris Bruce is an 8-figure digital marketer, Two Comma Club Award winner, and the founder of Internet Moguls. Over the past 10+ years, he has helped coaches, course creators, and entrepreneurs across every niche scale their businesses using automated evergreen webinar funnels — generating over $7.4M in sales with a single funnel. He now teaches his exact system to entrepreneurs who are ready to stop trading time for money.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="testimonials-inner">
+      <div class="section-label">Real Results From Real Students</div>
+      <h2 class="section-title">Entrepreneurs Across Every Niche Are Using This System</h2>
+      <div class="divider"></div>
+      <div class="testimonials-grid">
+        <img
+          src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/BxtZnWLbZlUWoEQg.png"
+          alt="Elaine Essien - Esthetician Business Consultant"
+          class="testimonial-img"
+        />
+        <img
+          src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/wHtkDxKVzyMDLFfj.png"
+          alt="Eli - Real Estate Entrepreneur"
+          class="testimonial-img"
+        />
+        <img
+          src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/CktdUedfsKQqVsFP.png"
+          alt="Hannah Ingram - Entrepreneur"
+          class="testimonial-img"
+        />
+        <img
+          src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/ZVrRBmcRcyTeeKyt.png"
+          alt="Mobile Home Mami"
+          class="testimonial-img"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/yHHutYKLESCvbPao.png" alt="Internet Moguls" style="height:45px;width:auto;display:block;margin:0 auto 12px;">
+    <p>© 2026 Internet Moguls. All Rights Reserved.</p>
+    <p style="margin-top: 8px;">
+      <a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a> &nbsp;|&nbsp; <a href="#">Contact</a>
+    </p>
+  </footer>
+
+</body>
+</html>
