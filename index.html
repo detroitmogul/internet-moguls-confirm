@@ -581,59 +581,32 @@
       <script>
       (function() {
         // ── CONFIG ──────────────────────────────────────────────
-        var WEBINAR_HOUR_EST = 15;   // 3:00 PM
-        var WEBINAR_MINUTE   = 0;
+        var INTERVAL_MINS    = 15;  // Sessions run every 15 minutes
         var WEBINAR_TITLE    = 'Free Masterclass: Internet Moguls';
         var WEBINAR_DESC     = 'Join Chris Bruce for the Free Evergreen Webinar Masterclass. Access link in your confirmation email.';
         var WEBINAR_LOCATION = 'Online — check your email for the access link';
         // ────────────────────────────────────────────────────────
 
-        function getNextWebinarEST() {
-          // Get current time in EST (UTC-5) / EDT (UTC-4)
-          var now = new Date();
-          // Determine EST offset: EST = UTC-5, EDT = UTC-4
-          // We'll use Intl to get current EST time
-          var estNow = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
-          var target = new Date(estNow);
-          target.setHours(WEBINAR_HOUR_EST, WEBINAR_MINUTE, 0, 0);
-
-          // If today's 3 PM has already passed, roll to tomorrow
-          if (estNow >= target) {
-            target.setDate(target.getDate() + 1);
-          }
-
-          // Convert target back to UTC for countdown math
-          // Get the UTC offset for America/New_York at target date
-          var targetStr = target.toLocaleString('en-US', { timeZone: 'America/New_York' });
-          var targetLocal = new Date(targetStr);
-          var diff = target - targetLocal;
-          var targetUTC = new Date(target.getTime() - diff);
-
-          return { target: targetUTC, display: target };
+        function getNextSlot() {
+          var now = Date.now();
+          var msInterval = INTERVAL_MINS * 60 * 1000;
+          // Add a 90-second buffer so the timer never shows 0:00 right on registration
+          var nextSlotMs = Math.ceil((now + 90 * 1000) / msInterval) * msInterval;
+          return new Date(nextSlotMs);
         }
 
-        var webinarInfo = getNextWebinarEST();
-        var targetUTC   = webinarInfo.target;
-        var displayTime = webinarInfo.display;
+        var targetUTC = getNextSlot();
 
-        // Format display date/time
-        var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-        var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-        var d = displayTime;
-        var isToday = (function() {
-          var estNow = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }));
-          return estNow.getDate() === d.getDate() && estNow.getMonth() === d.getMonth();
-        })();
+        // Format display time in EST
+        var timeStr = targetUTC.toLocaleTimeString('en-US', {
+          timeZone: 'America/New_York',
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true
+        }) + ' EST';
 
-        var dayLabel = isToday ? 'Today' : days[d.getDay()];
-        var timeStr  = (WEBINAR_HOUR_EST > 12 ? WEBINAR_HOUR_EST - 12 : WEBINAR_HOUR_EST) +
-                       ':' + (WEBINAR_MINUTE < 10 ? '0' : '') + WEBINAR_MINUTE +
-                       (WEBINAR_HOUR_EST >= 12 ? ' PM' : ' AM') + ' EST';
-
-        document.getElementById('cd-session-label').textContent =
-          dayLabel + ' at ' + timeStr;
-        document.getElementById('cd-session-date').textContent =
-          days[d.getDay()] + ', ' + months[d.getMonth()] + ' ' + d.getDate() + ' — ' + timeStr;
+        document.getElementById('cd-session-label').textContent = 'Starting Soon — Next Available Session';
+        document.getElementById('cd-session-date').textContent  = 'Today at ' + timeStr + '  ·  Sessions run every 15 minutes';
 
         // ── COUNTDOWN TICK ──────────────────────────────────────
         function pad(n) { return n < 10 ? '0' + n : '' + n; }
@@ -642,10 +615,16 @@
           var now  = Date.now();
           var diff = targetUTC.getTime() - now;
 
+          // When slot passes, auto-advance to the next 15-minute slot
           if (diff <= 0) {
-            document.getElementById('cd-timer').style.display   = 'none';
-            document.getElementById('cd-expired').style.display = 'block';
-            return;
+            targetUTC = getNextSlot();
+            var newTimeStr = targetUTC.toLocaleTimeString('en-US', {
+              timeZone: 'America/New_York',
+              hour: 'numeric', minute: '2-digit', hour12: true
+            }) + ' EST';
+            document.getElementById('cd-session-date').textContent =
+              'Today at ' + newTimeStr + '  ·  Sessions run every 15 minutes';
+            diff = targetUTC.getTime() - now;
           }
 
           var totalSec = Math.floor(diff / 1000);
