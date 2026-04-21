@@ -580,50 +580,53 @@
 
       <script>
       (function() {
-        // ── CONFIG ──────────────────────────────────────────────
-        var INTERVAL_MINS    = 15;  // Sessions run every 15 minutes
+        // ── CONFIG ────────────────────────────────────────────────────────
         var WEBINAR_TITLE    = 'Free Masterclass: Internet Moguls';
         var WEBINAR_DESC     = 'Join Chris Bruce for the Free Evergreen Webinar Masterclass. Access link in your confirmation email.';
         var WEBINAR_LOCATION = 'Online — check your email for the access link';
         // ────────────────────────────────────────────────────────
 
+        // Fixed 3:00 PM EST daily session
         function getNextSlot() {
-          var now = Date.now();
-          var msInterval = INTERVAL_MINS * 60 * 1000;
-          // Add a 90-second buffer so the timer never shows 0:00 right on registration
-          var nextSlotMs = Math.ceil((now + 90 * 1000) / msInterval) * msInterval;
-          return new Date(nextSlotMs);
+          var now = new Date();
+          var estNow = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+          var target = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+          target.setHours(15, 0, 0, 0); // 3:00 PM EST
+          if (estNow.getTime() >= target.getTime() - 90000) {
+            target.setDate(target.getDate() + 1);
+          }
+          var offset = now.getTime() - estNow.getTime();
+          return new Date(target.getTime() + offset);
+        }
+
+        function getSessionLabel() {
+          var now = new Date();
+          var estNow = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+          var target = getNextSlot();
+          var estTarget = new Date(target.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+          var isToday = estNow.toDateString() === estTarget.toDateString();
+          return isToday ? 'Today at 3:00 PM EST' : estTarget.toLocaleDateString('en-US', {
+            timeZone: 'America/New_York', weekday: 'long', month: 'long', day: 'numeric'
+          }) + ' at 3:00 PM EST';
         }
 
         var targetUTC = getNextSlot();
 
-        // Format display time in EST
-        var timeStr = targetUTC.toLocaleTimeString('en-US', {
-          timeZone: 'America/New_York',
-          hour: 'numeric',
-          minute: '2-digit',
-          hour12: true
-        }) + ' EST';
+        document.getElementById('cd-session-label').textContent = 'Your Session Is Confirmed';
+        document.getElementById('cd-session-date').textContent  = getSessionLabel() + '  ·  Daily at 3:00 PM EST';
 
-        document.getElementById('cd-session-label').textContent = 'Starting Soon — Next Available Session';
-        document.getElementById('cd-session-date').textContent  = 'Today at ' + timeStr + '  ·  Sessions run every 15 minutes';
-
-        // ── COUNTDOWN TICK ──────────────────────────────────────
+        // ── COUNTDOWN TICK ───────────────────────────────────────────────────────
         function pad(n) { return n < 10 ? '0' + n : '' + n; }
 
         function tick() {
           var now  = Date.now();
           var diff = targetUTC.getTime() - now;
 
-          // When slot passes, auto-advance to the next 15-minute slot
+          // When 3 PM passes, roll to tomorrow's 3 PM
           if (diff <= 0) {
             targetUTC = getNextSlot();
-            var newTimeStr = targetUTC.toLocaleTimeString('en-US', {
-              timeZone: 'America/New_York',
-              hour: 'numeric', minute: '2-digit', hour12: true
-            }) + ' EST';
             document.getElementById('cd-session-date').textContent =
-              'Today at ' + newTimeStr + '  ·  Sessions run every 15 minutes';
+              getSessionLabel() + '  ·  Daily at 3:00 PM EST';
             diff = targetUTC.getTime() - now;
           }
 
