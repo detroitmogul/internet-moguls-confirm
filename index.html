@@ -586,12 +586,12 @@
         var WEBINAR_LOCATION = 'Online — check your email for the access link';
         // ────────────────────────────────────────────────────────
 
-        // Fixed 3:00 PM EST daily session
+        // Fixed 8:00 PM EST daily session
         function getNextSlot() {
           var now = new Date();
           var estNow = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
           var target = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
-          target.setHours(15, 0, 0, 0); // 3:00 PM EST
+          target.setHours(20, 0, 0, 0); // 8:00 PM EST
           if (estNow.getTime() >= target.getTime() - 90000) {
             target.setDate(target.getDate() + 1);
           }
@@ -605,15 +605,15 @@
           var target = getNextSlot();
           var estTarget = new Date(target.toLocaleString('en-US', { timeZone: 'America/New_York' }));
           var isToday = estNow.toDateString() === estTarget.toDateString();
-          return isToday ? 'Today at 3:00 PM EST' : estTarget.toLocaleDateString('en-US', {
+          return isToday ? 'Today at 8:00 PM EST' : estTarget.toLocaleDateString('en-US', {
             timeZone: 'America/New_York', weekday: 'long', month: 'long', day: 'numeric'
-          }) + ' at 3:00 PM EST';
+          }) + ' at 8:00 PM EST';
         }
 
         var targetUTC = getNextSlot();
 
         document.getElementById('cd-session-label').textContent = 'Your Session Is Confirmed';
-        document.getElementById('cd-session-date').textContent  = getSessionLabel() + '  ·  Daily at 3:00 PM EST';
+        document.getElementById('cd-session-date').textContent  = getSessionLabel() + '  ·  Daily at 8:00 PM EST';
 
         // ── COUNTDOWN TICK ───────────────────────────────────────────────────────
         function pad(n) { return n < 10 ? '0' + n : '' + n; }
@@ -626,7 +626,7 @@
           if (diff <= 0) {
             targetUTC = getNextSlot();
             document.getElementById('cd-session-date').textContent =
-              getSessionLabel() + '  ·  Daily at 3:00 PM EST';
+              getSessionLabel() + '  ·  Daily at 8:00 PM EST';
             diff = targetUTC.getTime() - now;
           }
 
